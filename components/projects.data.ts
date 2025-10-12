@@ -14,7 +14,8 @@ export const projects: Project[] = [
       'Problème : détection tardive.',
       'Action : scraping + parsing + alerting (e-mail/CLI).',
       'Résultat : réaction plus rapide.'
-    ]
+    ],
+    href: 'https://github.com/noob216/Scraping-ANSSI-CVE'
   },
   {
     title: 'API Restaurant',

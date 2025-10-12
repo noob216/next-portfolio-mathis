@@ -1,0 +1,145 @@
+'use client'
+
+import React, { useCallback, useEffect, useRef } from 'react'
+import useEmblaCarousel from 'embla-carousel-react'
+import { motion } from 'framer-motion'
+import ProjectCard from './ProjectCard'
+import { projects, type Project } from './projects.data'
+
+export default function ProjectsCarousel() {
+  const CARD_H = 'min-h-[340px] md:min-h-[360px]'
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: 'start',
+    loop: true,
+    skipSnaps: false,
+    dragFree: false,
+  })
+
+  const rafIdRef = useRef<number | null>(null)
+  const isPausedRef = useRef(false)
+  const accumulatedScrollRef = useRef(0)
+
+  // Défilement continu fluide
+  useEffect(() => {
+    if (!emblaApi) return
+
+    const SPEED = 0.02 // Vitesse de défilement (plus petit = plus lent)
+    let lastTime = performance.now()
+
+    const scroll = () => {
+      if (!emblaApi || isPausedRef.current) {
+        rafIdRef.current = requestAnimationFrame(scroll)
+        return
+      }
+
+      const now = performance.now()
+      const deltaTime = now - lastTime
+      lastTime = now
+
+      // Accumuler le scroll
+      accumulatedScrollRef.current += SPEED * deltaTime
+
+      // Quand on a accumulé assez pour avancer d'au moins 1 pixel
+      if (Math.abs(accumulatedScrollRef.current) >= 1) {
+        const scrollAmount = Math.floor(accumulatedScrollRef.current)
+        accumulatedScrollRef.current -= scrollAmount
+
+        // Utiliser l'API publique scrollNext avec un pas très petit
+        const engine = (emblaApi as any).internalEngine?.()
+        if (engine?.scrollBody) {
+          engine.scrollBody.useBaseFriction().useDuration(0)
+          emblaApi.scrollNext()
+        }
+      }
+
+      rafIdRef.current = requestAnimationFrame(scroll)
+    }
+
+    // Attendre que Embla soit complètement initialisé
+    const handleInit = () => {
+      console.log('🎠 Carrousel initialisé - démarrage du défilement automatique')
+      isInitializedRef.current = true
+      isPausedRef.current = false
+      lastTimeRef.current = performance.now()
+    }
+
+    // Démarrer immédiatement si déjà initialisé, sinon attendre l'événement init
+    if (emblaApi.scrollSnapList().length > 0) {
+      handleInit()
+    } else {
+      emblaApi.on('init', handleInit)
+    }
+
+    rafIdRef.current = requestAnimationFrame(scroll)
+
+    // Pause pendant le drag seulement si c'est un vrai drag (avec mouvement)
+    const handlePointerDown = () => { 
+      console.log('� PointerDown détecté')
+      // Ne pas pauser immédiatement, attendre de voir si c'est un vrai drag
+    }
+    
+    const handlePointerUp = () => { 
+      console.log('👆 PointerUp détecté')
+    }
+    
+    const handleDragStart = () => {
+      console.log('🛑 Drag réel commencé - pause')
+      isDraggingRef.current = true
+      isPausedRef.current = true 
+    }
+    
+    const handleSettle = () => { 
+      console.log('▶️ Carrousel stabilisé - reprise')
+      isDraggingRef.current = false
+      isPausedRef.current = false
+    }
+
+    emblaApi.on('pointerDown', handlePointerDown)
+    emblaApi.on('pointerUp', handlePointerUp)
+    emblaApi.on('settle', handleSettle)
+
+    return () => {
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current)
+      emblaApi.off('init', handleInit)
+      emblaApi.off('pointerDown', handlePointerDown)
+      emblaApi.off('pointerUp', handlePointerUp)
+      emblaApi.off('settle', handleSettle)
+    }
+  }, [emblaApi])
+
+  // Molette verticale -> horizontal
+  const onWheel = useCallback(
+    (e: React.WheelEvent<HTMLDivElement>) => {
+      if (!emblaApi) return
+      const vertical = Math.abs(e.deltaY) > Math.abs(e.deltaX)
+      if (vertical) {
+        e.preventDefault()
+        if (e.deltaY > 0) emblaApi.scrollNext()
+        else emblaApi.scrollPrev()
+      }
+    },
+    [emblaApi]
+  )
+
+  return (
+    <div className="relative">
+      {/* Dégradés */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-slate-900 to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-slate-900 to-transparent" />
+
+      <div ref={emblaRef} onWheel={onWheel} className="overflow-hidden">
+        <div className="flex gap-4">
+          {projects.map((p: Project, idx) => (
+            <div
+              key={`project-${idx}`}
+              className={`flex-none w-[320px] sm:w-[360px] ${CARD_H}`}
+            >
+              <ProjectCard p={p} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}

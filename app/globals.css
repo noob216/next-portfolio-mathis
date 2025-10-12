@@ -1,0 +1,15 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{color-scheme:dark}
+html, body { background: theme('colors.bg'); color: theme('colors.text'); }
+.container { @apply mx-auto max-w-5xl px-6; }
+.section-title { @apply text-3xl font-bold mb-2; }
+.subtitle { @apply text-muted mb-6; }
+.btn { @apply inline-flex items-center rounded-xl2 border border-border px-4 py-2 font-semibold hover:border-accent transition; }
+.card { @apply bg-card border border-border rounded-xl2 p-4 shadow-soft; }
+.pill { @apply inline-flex items-center rounded-full border border-border bg-pill px-3 py-1 text-sm text-muted; }
+a { @apply text-accent; }
+nav a { @apply hover:underline }

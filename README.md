@@ -6,7 +6,7 @@ A modern, responsive portfolio website built with Next.js 14, showcasing project
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.5.4-blue?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.7-38B2AC?style=flat-square&logo=tailwind-css)](https://tailwindcss.com/)
 
-## 🚀 Features
+##  Features
 
 - **Modern Design**: Clean and professional interface with responsive layout
 - **Interactive Carousel**: Smooth project showcase powered by Embla Carousel
@@ -15,7 +15,7 @@ A modern, responsive portfolio website built with Next.js 14, showcasing project
 - **Fully Responsive**: Mobile-first design that works on all devices
 - **Type Safe**: Written in TypeScript for better development experience
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### Core
 - **[Next.js 14.2.5](https://nextjs.org/)** - React framework with App Router
@@ -36,7 +36,7 @@ A modern, responsive portfolio website built with Next.js 14, showcasing project
 - **[ESLint 8.57.0](https://eslint.org/)** - Code linting
 - **[eslint-config-next](https://nextjs.org/docs/pages/building-your-application/configuring/eslint)** - Next.js ESLint configuration
 
-## 📦 Installation
+##  Installation
 
 ### Prerequisites
 - Node.js 18.x or higher
@@ -63,7 +63,7 @@ npm run dev
 4. **Open your browser**
 Navigate to [http://localhost:3000](http://localhost:3000)
 
-## 🏗️ Project Structure
+##  Project Structure
 
 ```
 ├── app/
@@ -84,7 +84,7 @@ Navigate to [http://localhost:3000](http://localhost:3000)
 └── tsconfig.json           # TypeScript configuration
 ```
 
-## ⚙️ Available Scripts
+##  Available Scripts
 
 ```bash
 npm run dev      # Start development server (localhost:3000)
@@ -93,7 +93,7 @@ npm run start    # Start production server
 npm run lint     # Run ESLint for code quality
 ```
 
-## 🎨 Customization
+##  Customization
 
 ### Update Projects
 Edit `components/projects.data.ts` to add or modify projects:
@@ -123,7 +123,7 @@ Edit `app/page.tsx` to customize:
 - Tailwind configuration: `tailwind.config.js`
 - Component-specific styles: Tailwind classes in TSX files
 
-## 🚀 Deployment
+##  Deployment
 
 ### Deploy to Vercel (Recommended)
 
@@ -144,7 +144,7 @@ This project can also be deployed to:
 - **AWS Amplify**: Connect your Git repository
 - **Cloudflare Pages**: Import repository and deploy
 
-## 🔧 Configuration
+##  Configuration
 
 ### Next.js
 Configuration is minimal by default. Modify `next.config.mjs` for:

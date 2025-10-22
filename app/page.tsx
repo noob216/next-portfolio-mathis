@@ -19,17 +19,14 @@ export default function Page() {
             <div>
               <h1 className="text-2xl font-bold text-slate-100">Mathis Ali</h1>
               <p className="text-sky-400 text-lg font-medium mt-1">
-                Étudiant ingénieur
-              </p>
-              <p className="text-slate-400 text-base mt-1">
-                Cloud & cybersécurité
+                Étudiant ingénieur en Cloud & Cybersécurité
               </p>
             </div>
             <p className="text-slate-300 text-sm max-w-sm leading-relaxed px-2">
-              Je conçois des solutions fiables et performantes, avec un intérêt pour l'automatisation (Python), les réseaux, et l'hygiène sécurité (OWASP Top 10).
+              Je conçois des solutions performantes et sécurisées, en combinant automatisation (Python), infrastructures cloud et bonnes pratiques OWASP.
             </p>
             <p className="text-sky-400 text-sm font-medium max-w-sm px-2">
-              🔍 À la recherche d'un stage de 4 à 5 mois (cybersécurité, cloud, réseau ou dev) à partir d'avril 2026
+              En recherche d'un stage de 4 à 5 mois (cybersécurité, cloud ou DevOps) dès avril 2026.
             </p>
             <div className="flex gap-6 mt-4">
               <a 
@@ -70,12 +67,12 @@ export default function Page() {
           <div className="hidden md:grid grid-cols-[auto,1fr] gap-5 items-center">
             <img className="size-28 rounded-full border border-border" src="/profile-circle.png" alt="Photo de Mathis Ali" />
             <div>
-              <h1 className="text-4xl font-bold">Étudiant ingénieur — Cloud & cybersécurité</h1>
+              <h1 className="text-4xl font-bold">Étudiant ingénieur en Cloud & Cybersécurité</h1>
               <p className="text-muted mt-2 max-w-prose">
-                Je conçois des solutions fiables et performantes, avec un intérêt pour l'automatisation (Python), les réseaux, et l'hygiène sécurité (OWASP Top 10).
+                Je conçois des solutions performantes et sécurisées, en combinant automatisation (Python), infrastructures cloud et bonnes pratiques OWASP.
               </p>
               <p className="text-sky-400 text-base font-medium mt-2 max-w-prose">
-                🔍 À la recherche d'un stage de 4 à 5 mois (cybersécurité, cloud, réseau ou dev) à partir d'avril 2026
+                En recherche d'un stage de 4 à 5 mois (cybersécurité, cloud ou DevOps) dès avril 2026.
               </p>
               <div className="flex gap-4 mt-3">
                 <a href="https://github.com/noob216" target="_blank" rel="noopener">GitHub</a>

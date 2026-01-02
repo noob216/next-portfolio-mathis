@@ -81,5 +81,16 @@ export const projects: Project[] = [
       'Résultat : outil fonctionnel pour supervision & analyses.'
     ],
     href: 'https://github.com/noob216/TransConnect--Projet-POO-'
+  },
+  {
+    title: 'Machine Learning-based Intrusion Detection System',
+    meta: '2024 - Python / Notebook',
+    bullets: [
+      'Contexte : detection d''attaques reseau dans le cloud (CICIDS2017).',
+      'Probleme : detecter puis classer les attaques avec des modeles supervises et non supervises.',
+      'Action : 2 notebooks, le premier detecte attaque vs normal, le second classe le type d''attaque.',
+      'Resultat : pipeline ML reproductible et interpretable.'
+    ],
+    href: 'https://github.com/noob216/ML-Intrusion-Detection-System'
   }
 ]
